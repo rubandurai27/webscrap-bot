@@ -23,7 +23,7 @@ app = Client(
     
 @app.on_message(filters.command(['start']))
 def start(client, message):
-            message.reply_text(text =f"Hello **{message.from_user.first_name }** \n\n **Iam Simple web scraper** 🕸 \n __SEND ME WEBSITE LINK AND GET THAT WEB SOURCE__", reply_markup=InlineKeyboardMarkup(
+            message.reply_text(text =f"Hello **{message.from_user.first_name }** \n\n **Iam Simple web scraper** 🕸 \n __SEND ME WEBSITE LINK AND GET THAT WEB SOURCE__",reply_to_message_id = message.message_id , parse_mode="markdown", reply_markup=InlineKeyboardMarkup(
             [
                 [
                     InlineKeyboardButton("Support 🇮🇳" ,url="https://t.me/lntechnical") ],
@@ -45,7 +45,7 @@ def start(client, message):
     f.write(str(soup.prettify()))
     f.close()
 
-    caption = "Here Your Web Source \n ❤️ Thanks For Using me."
+    caption = "Here Your Web Source"
     try:
     	app.send_document(message.chat.id ,document = f"{msg_id}.txt",caption = caption)
     except ValueError as ve:
