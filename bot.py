@@ -19,15 +19,22 @@ app = Client(
         api_id=API_ID,
         api_hash=API_HASH,
     )
-    
-    
+
 @app.on_message(filters.command(['start']))
 def start(client, message):
-            message.reply_text(text =f"Hello **{message.from_user.first_name }** \n\n **Iam Simple web scraper** 🕸 \n __SEND ME WEBSITE LINK AND GET THAT WEB SOURCE__",reply_to_message_id = message.message_id , parse_mode="markdown", reply_markup=InlineKeyboardMarkup(
-            [
-                [
-                    InlineKeyboardButton("Support 🇮🇳" ,url="https://t.me/lntechnical") ],
-                 [InlineKeyboardButton("Subscribe 🧐", url="https://youtube.com/c/LNtechnical") ]          ]        ) )
+    await update.reply_text(
+        text=START_TEXT.format(update.from_user.mention),
+        reply_markup=START_BUTTONS,
+        disable_web_page_preview=True,
+        quote=True
+    )
+         START_TEXT  = f"Hello **{}** \n\n **Iam Simple web scraper** 🕸 \n __SEND ME WEBSITE LINK AND GET THAT WEB SOURCE__",
+         START_BUTTONS = InlineKeyboardMarkup(
+                      [[
+                       InlineKeyboardButton("Support 🇮🇳" ,url="https://t.me/lntechnical")
+                      ],[
+                       InlineKeyboardButton("Subscribe 🧐", url="https://youtube.com/c/LNtechnical")]]
+                       ))
 
 
 @app.on_message(filters.regex("^(http|https|www\.)"))
