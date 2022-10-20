@@ -28,14 +28,13 @@ def start(client, message):
         disable_web_page_preview=True,
         quote=True
     )
-         START_TEXT  = f"Hello **{}** \n\n **Iam Simple web scraper** 🕸 \n __SEND ME WEBSITE LINK AND GET THAT WEB SOURCE__",
+         START_TEXT  = """Hello **{}** \n\n **Iam Simple web scraper** 🕸 \n __SEND ME WEBSITE LINK AND GET THAT WEB SOURCE__"""
          START_BUTTONS = InlineKeyboardMarkup(
                       [[
                        InlineKeyboardButton("Support 🇮🇳" ,url="https://t.me/lntechnical")
                       ],[
                        InlineKeyboardButton("Subscribe 🧐", url="https://youtube.com/c/LNtechnical")]]
                        ))
-
 
 @app.on_message(filters.regex("^(http|https|www\.)"))
 def start(client, message):
