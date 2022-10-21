@@ -44,7 +44,7 @@ def start(client, message):
     link = message.text
     try:
     	res = requests.get(link)
-soup = BeautifulSoup(res.text, 'html.parser')
+soup = BeautifulSoup(res.text,'html.parser')
 links = []
 x = soup.select('a[href^="magnet:?xt=urn:btih:"]')
 for a in x:
