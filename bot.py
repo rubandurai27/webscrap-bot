@@ -41,25 +41,22 @@ def start(client, message):
 def start(client, message):
     ms = message.reply_text("```Trying to web scrap .........```", reply_to_message_id = message.message_id)
     msg_id = message.chat.id
-    html_url = message.text
+    link = message.text
     try:
-    	page = re.get(html_url)
-    	soup = BeautifulSoup(page,'html.parser')
-    except Exception as e:
-    	ms.edit(f"```Error : {e}```")
-    	return
-    f = open(f"{msg_id}.txt" , "w")
-    f.write(str(soup.prettify()))
-    f.close()
-
-    caption = "Here Your Web Source"
-    try:
-    	app.send_document(message.chat.id ,document = f"{msg_id}.txt",caption = caption)
-    except ValueError as ve:
-    	ms.edit("```file Size value error")
-    	os.remove(f"{msg_id}.txt")
-    	return
-    ms.delete()
-    os.remove(f"{msg_id}.txt")
+    	res = requests.get(link)
+        soup = BeautifulSoup(res.text, 'html.parser')
+        links = []
+     x = soup.select('a[href^="magnet:?xt=urn:btih:"]')
+     for a in x:
+         links.append(a['href'])
+         for o in links:
+      #  print(o)  
+      app.send_message(
+    chat_id, "{0} These are inline buttons",
+    reply_markup=InlineKeyboardMarkup(
+        [
+            [InlineKeyboardButton("Data", url="https://t.me/rubandurai27")],
+            [InlineKeyboardButton("Docs", url="https://docs.pyrogram.org")]
+        ]))
 	
 app.run()
