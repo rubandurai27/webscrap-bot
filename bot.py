@@ -36,27 +36,5 @@ def start(client, message):
         disable_web_page_preview=True,
         quote=True
     )
-
-@app.on_message(filters.regex("^(http|https|www\.)"))
-def start(client, message):
-    ms = message.reply_text("```Trying to web scrap .........```", reply_to_message_id = message.message_id)
-    msg_id = message.chat.id
-    link = message.text
-    try:
-    	res = requests.get(link)
-soup = BeautifulSoup(res.text,'html.parser')
-links = []
-x = soup.select('a[href^="magnet:?xt=urn:btih:"]')
-for a in x:
-        links.append(a['href'])
-        for o in links:
-            #print(o)
-      app.send_message(
-    chat_id, "{0} These are inline buttons",
-    reply_markup=InlineKeyboardMarkup(
-        [
-            [InlineKeyboardButton("Data", url="https://t.me/rubandurai27")],
-            [InlineKeyboardButton("Docs", url="https://docs.pyrogram.org")]
-        ]))
 	
 app.run()
