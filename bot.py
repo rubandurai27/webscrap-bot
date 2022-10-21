@@ -44,13 +44,13 @@ def start(client, message):
     link = message.text
     try:
     	res = requests.get(link)
-        soup = BeautifulSoup(res.text, 'html.parser')
-        links = []
-     x = soup.select('a[href^="magnet:?xt=urn:btih:"]')
-     for a in x:
-         links.append(a['href'])
-         for o in links:
-      #  print(o)  
+soup = BeautifulSoup(res.text, 'html.parser')
+links = []
+x = soup.select('a[href^="magnet:?xt=urn:btih:"]')
+for a in x:
+        links.append(a['href'])
+        for o in links:
+            #print(o)
       app.send_message(
     chat_id, "{0} These are inline buttons",
     reply_markup=InlineKeyboardMarkup(
